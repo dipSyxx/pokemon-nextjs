@@ -6,7 +6,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 
 //! SSR - Server Side Rendering
-// export async function getServerSideProps({ params }) {
+// export const getServerSideProps = async ({ params }) => {
 //   const res = await fetch(`https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${params.id}.json`)
 
 //   return {
@@ -16,7 +16,7 @@ import Head from 'next/head'
 //   }
 // }
 //! SSG - Static Site Generation
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
   const res = await fetch('https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json')
 
   const pokemon = await res.json()
@@ -31,7 +31,7 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params }) {
+export const getStaticProps = async ({ params }) => {
   const res = await fetch(`https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${params.id}.json`)
 
   return {
@@ -51,7 +51,7 @@ export const Details = ({ pokemon }) => {
   // const [pokemon, setPokemon] = useState(null)
 
   // useEffect(() => {
-  //   async function getPokemon() {
+  //   const getPokemon = async () => {
   //     const res = await fetch(`https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${id}.json`)
   //     setPokemon(await res.json())
   //   }

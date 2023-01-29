@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 //! SSR - Server Side Rendering
-// export async function getServerSideProps() {
+// export const getServerSideProps = async () => {
 //   const res = await fetch('https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json')
 
 //   return {
@@ -15,7 +15,7 @@ import Link from 'next/link'
 // }
 
 //! SSG - Static Site Generation
-export async function getStaticProps() {
+export const getStaticProps = async () => {
   const res = await fetch('https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json')
 
   return {
@@ -30,7 +30,7 @@ export const Home = ({ pokemon }) => {
   // const [pokemon, setPokemon] = useState([])
 
   // useEffect(() => {
-  //   async function getPokemon() {
+  //   const getPokemon = async () => {
   //     const res = await fetch('https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json')
   //     setPokemon(await res.json())
   //   }
