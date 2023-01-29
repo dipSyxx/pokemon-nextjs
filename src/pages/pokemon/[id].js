@@ -66,7 +66,7 @@ export const Details = ({ pokemon }) => {
   // }
   return (
     <>
-      <Head>{pokemon.name}</Head>
+      <Head><title>{pokemon.name}</title></Head>
       <Link href="/">
         <h3>Go back</h3>
       </Link>

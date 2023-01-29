@@ -44,6 +44,7 @@ export const Home = ({ pokemon }) => {
       </Head>
       <div className={styles.container}>
         <h2>Pokemon list:</h2>
+        <h3>i love my kitty</h3>
         <div className={styles.grid}>
           {pokemon.map((pokemon) => (
             <div className={styles.card} key={pokemon.id}>
