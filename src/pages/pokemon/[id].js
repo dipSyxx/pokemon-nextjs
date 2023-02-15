@@ -4,6 +4,7 @@ import styles from '@/styles/Details.module.css'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
+import axios from 'axios'
 
 //! SSR - Server Side Rendering
 // export const getServerSideProps = async ({ params }) => {
@@ -17,9 +18,9 @@ import Head from 'next/head'
 // }
 //! SSG - Static Site Generation
 export const getStaticPaths = async () => {
-  const res = await fetch('https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json')
+  const { data } = await axios.get('https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json')
 
-  const pokemon = await res.json()
+  const pokemon = await data
 
   return {
     paths: pokemon.map((pokemon) => ({
@@ -32,11 +33,11 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params }) => {
-  const res = await fetch(`https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${params.id}.json`)
+  const { data } = await axios.get(`https://jherr-pokemon.s3.us-west-1.amazonaws.com/pokemon/${params.id}.json`)
 
   return {
     props: {
-      pokemon: await res.json(),
+      pokemon: await data,
     },
     revalidate: 30,
   }
@@ -66,7 +67,9 @@ export const Details = ({ pokemon }) => {
   // }
   return (
     <>
-      <Head><title>{pokemon.name}</title></Head>
+      <Head>
+        <title>{pokemon.name}</title>
+      </Head>
       <Link href="/">
         <h3>Go back</h3>
       </Link>

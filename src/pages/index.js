@@ -2,6 +2,7 @@ import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import axios from 'axios'
 
 //! SSR - Server Side Rendering
 // export const getServerSideProps = async () => {
@@ -16,11 +17,11 @@ import Link from 'next/link'
 
 //! SSG - Static Site Generation
 export const getStaticProps = async () => {
-  const res = await fetch('https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json')
+  const { data } = await axios.get('https://jherr-pokemon.s3.us-west-1.amazonaws.com/index.json')
 
   return {
     props: {
-      pokemon: await res.json(),
+      pokemon: await data,
     },
   }
 }
